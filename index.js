@@ -17,10 +17,28 @@ import { initializeAdminUser } from "./services/authService.js";
 
 
 const app = express();
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://furniro-frontend-w796.onrender.com",
+    "https://furniro-frontend-w796.onrender.com",
+].filter(Boolean);
+
 app.use(cors({
-    origin: "https://furniro-frontend-w796.onrender.com" || "http://localhost:3000", 
-    credentials: true
-}))
+    allowedHeaders: ["Content-Type", "token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
+    exposedHeaders: ["token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+            return callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    preflightContinue: false,
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
