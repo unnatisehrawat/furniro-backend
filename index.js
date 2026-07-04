@@ -43,10 +43,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Connect to MongoDB and then seed the Admin user
-connectDB().then(() => {
-    initializeAdminUser();
-});
-
+connectDB()
+  .then(() => initializeAdminUser())
+  .catch((err) => {
+    console.error("Startup failed:", err);
+  });
+  
 app.get("/", (req, res) => {
     res.send("server is running")
 })

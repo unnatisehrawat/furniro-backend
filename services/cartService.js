@@ -1,8 +1,8 @@
 import Cart from "../models/cart.js";
 
 export const getCart = async (userId) => {
-    const result = await Cart.findOne({ userId }).populate("items.productId");
-    return result
+  const result = await Cart.findOne({ userId }).populate("items.productId");
+  return result
 };
 
 
