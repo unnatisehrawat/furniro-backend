@@ -19,8 +19,7 @@ import { initializeAdminUser } from "./services/authService.js";
 const app = express();
 const allowedOrigins = [
     "http://localhost:3000",
-    "https://furniro-frontend-w796.onrender.com",
-    "https://furniro-frontend-w796.onrender.com",
+    "https://furniro-frontend-0s4m.onrender.com"
 ].filter(Boolean);
 
 app.use(cors({
