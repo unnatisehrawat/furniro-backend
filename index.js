@@ -12,6 +12,7 @@ import categoryRoutes from "./routes/categoryRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 import cartRoutes from "./routes/cartRoutes.js"
 import leadRoutes from "./routes/leadRoutes.js"
+import chatRoutes from "./routes/chatRoutes.js";
 import { initializeAdminUser } from "./services/authService.js";
 
 
@@ -57,6 +58,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/leads", leadRoutes)
 app.use("/api/auth", authRoutes);
+app.use("/api/chat", chatRoutes);
 
 const PORT = process.env.PORT || 5000;
 
